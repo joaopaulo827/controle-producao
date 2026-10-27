@@ -24,12 +24,13 @@
     <option value="injetora">Injetora</option>
     <option value="solda">Solda</option>
     </select>
+    <label><input id="urgente" type="checkbox"> Urgente</label>
     <button type="submit">Abrir OP</button>
     <p id="mensagem" class="erro" hidden></p>
   </form>
-    <label for="busca">Buscar produto</label>
-    <input id="busca" type="search">  
    <div class="container">
+  <label for="busca">Buscar produto</label>
+  <input id="busca" type="search">      
   <button class="filtro" data-filtro="todas">Todas</button>
   <button class="filtro" data-filtro="aguardando">Aguardando</button>
   <button class="filtro" data-filtro="producao">Em produção</button>
@@ -37,9 +38,9 @@
   </div>
   <p id="resumo" class="resultado"></p>
 
-  <ul id="lista" class="lista-ops">
-    <p id="vazia" hidden>Nenhuma ordem encontrada.</p>    
+  <ul id="lista" class="lista-ops">    
   </ul>
+  <p id="vazia" hidden>Nenhuma ordem encontrada.</p>
 </main>
 <script src="js/ordens.js"></script> 
 </body>

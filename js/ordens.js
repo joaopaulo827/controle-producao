@@ -1,9 +1,10 @@
-const resumo = document.querySelector("#resumo")
+const resumo = document.querySelector("#resumo") 
 const botaoTv= document.querySelector("#modo-tv")
 const botoes= document.querySelectorAll(".filtro")
 const formOp = document.querySelector("#form-op")
 const busca = document.querySelector("#busca") 
 const vazia = document.querySelector("#vazia")
+const CampoUrgente= document.querySelector("#urgente")
 let filtros = "todas"
 let aguardando=0, concluida=0, producao=0
 let ordens = [
@@ -39,6 +40,11 @@ const titulo = document.createElement("h3")
 titulo.textContent = "OP-" + op.numero + " · " + op.produto
 item.append(titulo)
 lista.append(item)
+if(op.urgente===true){
+  const erro=document.createElement("span")
+  erro=classList.toggle("erro")
+  op.textContent="URGENTE"
+}
 if (op.status !== "concluida") {
   const avancar = document.createElement("button")
 
@@ -99,6 +105,19 @@ criarOP(op)
     " - Concluido: " +concluida;
   resumo.textContent = texto  
 })
+let visiveis = ordens
+if (filtros !== "todas") {
+  visiveis = ordens.filter((op) => op.status === filtros)
+}
+const texto = busca.value.trim().toLowerCase()
+visiveis = visiveis.filter((op) => op.produto.toLowerCase().includes(texto))
+
+lista.textContent = ""
+visiveis.forEach((op) => {
+  lista.append(criarOP(op))
+})
+vazia.hidden = visiveis.length > 0
+atualizarResumo(visiveis.length)
 }
 
 formOp.addEventListener("submit", (event) => {
@@ -119,12 +138,15 @@ formOp.addEventListener("submit", (event) => {
             produto,
             quantidade: qtd,
             status: "aguardando",
-            maquina: maquina.value
+            maquina: maquina.value,
+            urgente:CampoUrgente.checked
         });
         desenhar();
     }
-busca.addEventListener("input", desenhar)
 
 });
+function atualizarResumo(){
+
+}
+busca.addEventListener("input", desenhar)
   desenhar()
-  
