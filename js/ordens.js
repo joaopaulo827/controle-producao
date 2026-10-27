@@ -146,7 +146,7 @@ formOp.addEventListener("submit", (event) => {
 
 });
 function atualizarResumo(){
-
+  
 }
 busca.addEventListener("input", desenhar)
   desenhar()
